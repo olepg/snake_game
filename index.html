@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Snake</title>
+    </head>
+    <body>
+        <section id="main-container">
+            <section id="mid-container">
+                <section id="game-mode-container">
+                    <div class="game-mode" data-mode="normal"></div>
+                    <div class="game-mode" data-mode="hard"></div>
+                    <div class="game-mode" data-mode="expert"></div>
+                    <div class="game-mode" data-mode="master"></div>
+                    <div class="game-mode" data-mode="inferno"></div>
+                </section>
+
+                <div id="canvas-container">
+                    <div id="playerboard">
+                        <div id="score">0000</div>
+                        <div id="special-timer">
+                            <img id="special-Icon" />
+                            <span id="special-countdown"></span>
+                        </div>
+                    </div>
+
+                    <canvas id="canvas" width="800" height="600"></canvas>
+                    <div class="game-over"></div>
+                    <div class="game-over-background"></div>
+                    <div id="game-over-text">YOU DIED</div>
+                    <div id="press-any-key">Press any key to continue...</div>
+                </div>
+
+                <div id="perk-container">
+                    <div>PERKS</div>
+                    <div id="perk-locked-overlay">LOCKED</div>
+                    <div class="perk-item">
+                        <div class="perk-collectedamount">30 / 100 Apples Collected</div>
+                        <div class="perk-reward">
+                            4% chance of double points when collecting an apple
+                        </div>
+                    </div>
+                    <div class="perk-item">
+                        <div class="perk-collectedamount">10 / 50 Carrots Collected</div>
+                        <div class="perk-reward">
+                            2% chance of double points when collecting an carrot
+                        </div>
+                    </div>
+                    <div class="perk-item">
+                        <div class="perk-collectedamount">4 / 25 Bananas Collected</div>
+                        <div class="perk-reward">
+                            2% chance of double points when collecting an carrot
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bottom-container">
+                <div id="star-container">
+                    <div id="star-title"></div>
+                    <div id="star-description"></div>
+                </div>
+
+                <div id="highscore-container">
+                    <div>HIGHSCORE</div>
+                    <div class="score-row-header">
+                        <span class="date-col">Date</span>
+                        <span class="score-col">Score</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </body>
+    <script type="module" src="main.js"></script>
+</html>
