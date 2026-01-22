@@ -217,7 +217,10 @@ export function isSnakeCollision() {
 
 export function isGameOver() {
     if (isWallCollision() || isSnakeCollision()) {
+        if (gameState.isWaitingForReset) return;
+        
         gameState.isRunning = false;
+        gameState.isWaitingForReset = true;
 
         addDeathScreen();
         drawSnake();
@@ -235,6 +238,7 @@ export function isGameOver() {
 
 function resetGameStats() {
     gameState.isRunning = true;
+    gameState.isWaitingForReset = false;
     gameState.direction = { x: 1, y: 0 };
     gameState.nextDirection = { x: 1, y: 0 };
     gameState.score = 0;

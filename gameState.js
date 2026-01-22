@@ -10,6 +10,7 @@ export const gameState = {
     lastTailPosition: null,
     wallCollision: true,
     perksUnlocked: false,
+    isWaitingForReset: false,
 };
 
 export const modeState = {
