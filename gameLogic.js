@@ -41,16 +41,31 @@ export function setSnakeDirection(event) {
         KeyS: down,
     };
 
-    const tmp = keyMap[event.code];
-    const currentDir = gameState.direction;
+    const newDir = keyMap[event.code];
+    if (!newDir) return;
 
-    if (!tmp) return;
-    if (tmp.x === -currentDir.x && tmp.y === -currentDir.y) return;
+    // Get the last queued direction, or current direction if buffer is empty
+    const lastDir = gameState.inputBuffer.length > 0
+        ? gameState.inputBuffer[gameState.inputBuffer.length - 1]
+        : gameState.nextDirection;
 
-    gameState.nextDirection = tmp;
+    // Prevent 180-degree turns
+    if (newDir.x === -lastDir.x && newDir.y === -lastDir.y) return;
+    
+    // Don't add duplicate directions
+    if (newDir.x === lastDir.x && newDir.y === lastDir.y) return;
+
+    // Add to buffer if not full
+    if (gameState.inputBuffer.length < gameState.maxInputBuffer) {
+        gameState.inputBuffer.push(newDir);
+    }
 }
 
 export function moveSnake() {
+    // Consume from input buffer if available
+    if (gameState.inputBuffer.length > 0) {
+        gameState.nextDirection = gameState.inputBuffer.shift();
+    }
     gameState.direction = gameState.nextDirection;
 
     const seg = snakeSprite.segment;
@@ -240,6 +255,7 @@ function resetGameStats() {
     gameState.isWaitingForReset = false;
     gameState.direction = { x: 1, y: 0 };
     gameState.nextDirection = { x: 1, y: 0 };
+    gameState.inputBuffer = [];
     gameState.score = 0;
 
     snakeSprite.segment = [

@@ -6,6 +6,8 @@ export const gameState = {
     gameSpeed: 1000 / 10,
     direction: { x: 1, y: 0 },
     nextDirection: { x: 1, y: 0 },
+    inputBuffer: [],
+    maxInputBuffer: 2,
     score: 0,
     lastTailPosition: null,
     wallCollision: true,
