@@ -1,4 +1,3 @@
-import { resetLoop } from "./main.js";
 import { gameState, modeState, foodState } from "./gameState.js";
 import { stars, perks } from "./achievements.js";
 import {
@@ -259,7 +258,8 @@ function resetGameStats() {
 export function resetGame() {
     resetGameStats();
     resetGameOverlay();
-    resetLoop();
+    gameState.lastTime = 0;
+    gameState.accumulator = 0;
 }
 
 export function startGameMode(e) {
